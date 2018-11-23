@@ -37,7 +37,7 @@ z = sigma_z*randn(1,1);
 
 R_l = rotx(x)*roty(y)*rotz(z);
 acc_l = window_data(:,8:10)';
-acc_l_rot = R_t * acc_l;
+acc_l_rot = R_l * acc_l;
 
 % concatenating rotated columns to obtain the synthetic window
 rotated_window = [window_data(:,1), acc_a_rot', acc_t_rot',acc_l_rot',...
