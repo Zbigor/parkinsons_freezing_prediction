@@ -1,0 +1,33 @@
+% assumes that all training data is already available in the proper format
+function [] = train_svm_model(input_data_path,output_data_path,...
+                              dataset,filename)
+
+data_struct = load(input_data_path);
+M = data_struct.data;
+s = size(M);
+le = s(1);
+
+if strcmp(dataset,'DAPHNET')
+    
+    addpath ../../libsvm-3.23/matlab/
+    % reading training data
+    % assuming the data is already prepared in a proper format
+    [data_label, data_inst] = libsvmread(data_path);
+
+    % building the svm model
+    % explain input parameters
+    % TO DO: OPTIMIZE hyperparameters
+    model = svmtrain(data_label, data_inst, '-c 1 -g 0.07 -b 1');
+
+    % model needs to be exported
+    
+    folder_name = strcat('length',num2str(settingsID));
+    mkdir(strcat(output_data_path,folder_name));
+
+    name = strcat(output_data_path,folder_name,'/',filename);
+    save(name,'windows');
+
+rmpath ../../libsvm-3.23/matlab/
+
+end
+
