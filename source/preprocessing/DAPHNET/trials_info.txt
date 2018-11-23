@@ -1,0 +1,306 @@
+ParticipantS01R01.txt
+
+Number of pre-FoG events is 
+
+18
+
+ParticipantS01R02.txt
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantS02R01.txt
+
+Number of pre-FoG events is 
+
+9
+
+ParticipantS02R02.txt
+
+Number of pre-FoG events is 
+
+15
+
+ParticipantS03R01.txt
+
+Number of pre-FoG events is 
+
+43
+
+ParticipantS03R02.txt
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantS03R03.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS04R01.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS05R01.txt
+
+Number of pre-FoG events is 
+
+40
+
+ParticipantS05R02.txt
+
+Number of pre-FoG events is 
+
+26
+
+ParticipantS06R01.txt
+
+Number of pre-FoG events is 
+
+10
+
+ParticipantS06R02.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS07R01.txt
+
+Number of pre-FoG events is 
+
+16
+
+ParticipantS07R02.txt
+
+Number of pre-FoG events is 
+
+8
+
+ParticipantS08R01.txt
+
+Number of pre-FoG events is 
+
+14
+
+ParticipantS09R01.txt
+
+Number of pre-FoG events is 
+
+27
+
+ParticipantS10R01.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS01R01.txtParticipantS01R01.txt
+
+
+
+Number of pre-FoG events is 
+
+Number of pre-FoG events is 
+
+1818
+
+
+
+ParticipantS01R02.txt
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantS01R02.txt
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantS02R01.txt
+
+Number of pre-FoG events is 
+
+9
+
+ParticipantS02R01.txt
+
+Number of pre-FoG events is 
+
+9
+
+ParticipantS02R02.txt
+
+Number of pre-FoG events is 
+
+15
+
+ParticipantS02R02.txt
+
+Number of pre-FoG events is 
+
+15
+
+ParticipantS03R01.txt
+
+Number of pre-FoG events is 
+
+43
+
+ParticipantS03R01.txt
+
+Number of pre-FoG events is 
+
+43
+
+ParticipantS03R02.txt
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantS03R02.txt
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantS03R03.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS03R03.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS04R01.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS04R01.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS05R01.txt
+
+Number of pre-FoG events is 
+
+40
+
+ParticipantS05R01.txt
+
+Number of pre-FoG events is 
+
+40
+
+ParticipantS05R02.txt
+
+Number of pre-FoG events is 
+
+26
+
+ParticipantS05R02.txt
+
+Number of pre-FoG events is 
+
+26
+
+ParticipantS06R01.txt
+
+Number of pre-FoG events is 
+
+10
+
+ParticipantS06R01.txt
+
+Number of pre-FoG events is 
+
+10
+
+ParticipantS06R02.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS06R02.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS07R01.txt
+
+Number of pre-FoG events is 
+
+16
+
+ParticipantS07R01.txt
+
+Number of pre-FoG events is 
+
+16
+
+ParticipantS07R02.txt
+
+Number of pre-FoG events is 
+
+8
+
+ParticipantS07R02.txt
+
+Number of pre-FoG events is 
+
+8
+
+ParticipantS08R01.txt
+
+Number of pre-FoG events is 
+
+14
+
+ParticipantS08R01.txt
+
+Number of pre-FoG events is 
+
+14
+
+ParticipantS09R01.txt
+
+Number of pre-FoG events is 
+
+27
+
+ParticipantS09R01.txt
+
+Number of pre-FoG events is 
+
+27
+
+ParticipantS10R01.txt
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantS10R01.txt
+
+Number of pre-FoG events is 
+
+0
+

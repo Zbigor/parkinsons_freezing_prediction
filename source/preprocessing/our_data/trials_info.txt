@@ -1,0 +1,660 @@
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13STNWalk-20150204-111651.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13STNWalk-20150204-111651.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13STNWalk-20150204-111651.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13offwalk-20150204-114606.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13offwalk2-20150204-115004.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13STNWalk-20150204-111651.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13offwalk-20150204-114606.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13offwalk2-20150204-115004.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS15OffWalk-20150513-092100.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS5Of_normal-20140710-084533.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+4
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13STNWalk-20150204-111651.mat
+
+Number of pre-FoG events is 
+
+3
+
+ParticipantDBS13offwalk-20150204-114606.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS13offwalk2-20150204-115004.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS15OffWalk-20150513-092100.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS5Of_normal-20140710-084533.mat
+
+Number of pre-FoG events is 
+
+3
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+4
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13STNWalk-20150204-111651.mat
+
+Number of pre-FoG events is 
+
+3
+
+ParticipantDBS13offwalk-20150204-114606.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS13offwalk2-20150204-115004.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS15OffWalk-20150513-092100.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS5Of_normal-20140710-084533.mat
+
+Number of pre-FoG events is 
+
+3
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+4
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13STNWalk-20150204-111651.mat
+
+Number of pre-FoG events is 
+
+3
+
+ParticipantDBS13offwalk-20150204-114606.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS13offwalk2-20150204-115004.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS15OffWalk-20150513-092100.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS5Of_normal-20140710-084533.mat
+
+Number of pre-FoG events is 
+
+3
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+4
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+4
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+4
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13STNWalk-20150204-111651.mat
+
+Number of pre-FoG events is 
+
+3
+
+ParticipantDBS13offwalk-20150204-114606.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS13offwalk2-20150204-115004.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS15OffWalk-20150513-092100.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS5Of_normal-20140710-084533.mat
+
+Number of pre-FoG events is 
+
+3
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+4
+
+ParticipantDBS08OffWalk-20140820-105613.mat
+
+Number of pre-FoG events is 
+
+4
+
+ParticipantDBS08SNrWalk-20140820-102345.mat
+
+Number of pre-FoG events is 
+
+6
+
+ParticipantDBS09SNrWalk-20141015-102944.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk-20150204-103626.mat
+
+Number of pre-FoG events is 
+
+1
+
+ParticipantDBS13SNrWalk2-20150204-105404.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS13STNWalk-20150204-111651.mat
+
+Number of pre-FoG events is 
+
+3
+
+ParticipantDBS13offwalk-20150204-114606.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS13offwalk2-20150204-115004.mat
+
+Number of pre-FoG events is 
+
+0
+
+ParticipantDBS15OffWalk-20150513-092100.mat
+
+Number of pre-FoG events is 
+
+5
+
+ParticipantDBS5Of_normal-20140710-084533.mat
+
+Number of pre-FoG events is 
+
+3
+
