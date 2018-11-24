@@ -1,0 +1,36 @@
+function [] = train_svm_bayesian(input_data_path,output_data_path,...
+                              class_imbalance_weights, filename)
+%TRAIN_SVM_BAYESIAN generate 
+%   Detailed explanation goes here
+
+ % reading training data
+ % assuming the data is already prepared in a proper format
+[data_label, data_inst] = libsvmread(input_data_path);
+
+
+gamma = optimizableVariable('gamma',[1e-6,1e6],'Transform','log');
+box = optimizableVariable('box',[1e-6,1e6],'Transform','log');
+x = table(gamma,box);
+
+
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
