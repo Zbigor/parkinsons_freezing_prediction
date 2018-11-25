@@ -1,0 +1,7 @@
+A = [3 5 1; 0 9 11; 5 2 7; 1 5 6];
+window_data = cat(3,A,[3 2 1; 0 9 8; 5 3 7; 1 5 7]);
+% extracting data without timing and labels
+window_data = window_data(:,2:4,:);
+% calculating mean of each column, effectively calculating mean of each 
+% axis for each accelerometer, for each window
+features = mean(window_data);

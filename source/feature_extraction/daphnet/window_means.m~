@@ -4,7 +4,7 @@ function [features] = window_means(window_data)
 % in absence of movement.
 % Expects a 3D matrix of window data as input
 % size(window_data) = samples x channels x windows
-% it returns a vector of scalar feature values output = windows x channels
+% it returns a vector of scalar feature values output
 
 % extracting data without timing and labels 
 window_data = window_data(:,2:10,:);
