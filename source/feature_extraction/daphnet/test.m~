@@ -13,14 +13,10 @@ N_w = 16;
 y = [];
 ar = [];
 tic
-[b1,a1] = butter(3,[0.1 0.68]/32,'bandpass');
-[b2,a2] = butter(3,[0.68 3]/32,'bandpass');
-[b3,a3] = butter(3,[3 8]/32,'bandpass');
-
 parfor it_w = 1:N_w
-    y(:,:,it_w) = [filtfilt(b1,a1,x(:,:,it_w)), ...
-                   filtfilt(b2,a2,x(:,:,it_w)),...
-                   filtfilt(b3,a3,x(:,:,it_w))];
+    y(:,:,it_w) = [bandpass(x(:,:,it_w),[0.1 0.68],Fs), ...
+                   bandpass(x(:,:,it_w),[0.68 3],Fs),...
+                   bandpass(x(:,:,it_w),[3 8],Fs)];
     ar(:,:,it_w) = arburg(squeeze(x(:,:,it_w)),4)';            
 end
 time = toc;
@@ -45,11 +41,10 @@ maxfreq_features = [squeeze(fmax(1,:,:))', squeeze(fmax(2,:,:))'];
 centroid = squeeze(mean(x./sum(x)))';
 sk = squeeze(skewness(x,0,1))';
 ar_features = [squeeze(ar(1,:,:))', squeeze(ar(2,:,:))',...
-               squeeze(ar(3,:,:))', squeeze(ar(4,:,:))', ... 
-               squeeze(ar(5,:,:))'];
+               squeeze(ar())];
 
 
-vel = squeeze(trapz(x))';
+
 
 
 

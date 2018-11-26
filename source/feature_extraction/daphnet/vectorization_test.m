@@ -37,5 +37,6 @@ parfor it_w = 1:N_w
     R2(it_w,:) = [r2(1,2), r2(2,3),r2(1,3)];
     R3(it_w,:) = [r3(1,2), r3(2,3),r3(1,3)];
 end
-features = [R1,R2,R3];
+features2 = [R1,R2,R3];
 elapsed = toc;
+
