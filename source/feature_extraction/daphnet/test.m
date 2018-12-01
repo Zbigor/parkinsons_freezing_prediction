@@ -50,7 +50,40 @@ ar_features = [squeeze(ar(1,:,:))', squeeze(ar(2,:,:))',...
 
 
 vel = squeeze(trapz(x))';
+pow = (sum(squeeze(sum(y.*y)),1))';
+pow2 = (sum(squeeze(sum(x.*x)),1))';
+fi = pow./pow2;
+dm = [1 3 4.2 5;...
+      4 12 3.2 2.1;...
+      2 6 8 1;...
+      11 33 4 2;...
+      5 15 3 9;...
+      6 18 2 3];
+  R = corr(dm);
+  X = ["first", "second", "third", "fourth"];
+  Y = X;
+  
+  
+figure
+h = heatmap(X,Y,R);
+colormap('jet');
+h.Title = 'Correlations of extracted features';
+v = ones(length(R),1);
+indices = (R< 0.7) .* (R > -0.7)+diag(v);
 
+
+x = normalize(x);
+trajectory_matrix = [squeeze(x(:,1,:));squeeze(x(:,2,:));...
+                     squeeze(x(:,3,:))];
+dim = size(x);
+K = dim(3);
+C = (trajectory_matrix * trajectory_matrix')/K;
+[V,D] = eig(C);  
+D = diag(D);      % extract the diagonal
+[D,ind]=sort(D,'descend'); % sort eigenvalues
+V = V(:,ind);             % and eigenvectors
+V = V(1:5,:);
+features_ssa = (V * trajectory_matrix)';
 
 
 

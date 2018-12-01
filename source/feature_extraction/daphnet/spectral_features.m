@@ -22,6 +22,7 @@ bp_window_data = [];
 % correlated with a time-shifted version of itself
 ar= [];
 % creating bandpass filters
+% maybe 0.5 instead of 0.68 Hz
 [b1,a1] = butter(3,[0.1 0.68]/(Fs/2),'bandpass');
 [b2,a2] = butter(3,[0.68 3]/(Fs/2),'bandpass');
 [b3,a3] = butter(3,[3 8]/(Fs/2),'bandpass');
@@ -94,7 +95,17 @@ maxfreq_features = [squeeze(fmax(1,:,:))', squeeze(fmax(2,:,:))'];
 % higher frequency pattern
 % with respect to the one that is characteristic of walking (7, 8, 14, 15). This feature is the
 % power in this freezing band, which is defined to be between 3 and 8 Hz, as in Ref. (8). This
-% feature was calculated for both left and right ankles and the two values were then averaged
+% total power: over each axis of each sensor
+total_pow_freezing = (sum(squeeze(sum(P1(:,19:27,:).*P1(:,19:27,:)))))';
+
+% Power in the locomotor band
+total_pow_locomotor = (sum(squeeze(sum(P1(:,10:18,:).*P1(:,10:18,:)))))';
+% Freezing index
+% It is the ratio between the power in the freezing band and the power in the locomotor band
+% (8). It is usually used in studies for detecting freezing of gait with inertial sensors. When
+% freezing is already in place, this index tends to show a high value (8, 14, 15).
+% total power: over each axis of each sensor
+freezing_index = total_pow_freezing/total_pow_locomotor;
 
 
 % Spectral density centre of mass gives information about the overall 
@@ -118,9 +129,12 @@ kurtosis_features_f = squeeze(kurtosis(P1,0,1))';
 % packing all features into a design matrix, to be merged with other
 % features
 features_out = [ar_features, stdev_features, maxval_features, ...
-                maxfreq_features, centroid_features, skewness_features_t,...
+                maxfreq_features, total_pow_freezing, total_pow_locomotor,...
+                freezing_index, centroid_features, skewness_features_t,...
                 skewness_features_f, kurtosis_features_t, ... 
                 kurtosis_features_f];
 
+            
+            
 end
 
