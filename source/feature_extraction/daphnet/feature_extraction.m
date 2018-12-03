@@ -66,7 +66,7 @@ old_folder = pwd;
 cd ../../libsvm-3.23/matlab/
 libsvmwrite('design_matrix25.train',training_labels, features_sparse);
 filename = 'design_matrix_25';
-name = strcat(path,folder_name,filename);
+name = strcat(path,filename);
 save(name,'design_matrix');
 cd(old_folder);             
              

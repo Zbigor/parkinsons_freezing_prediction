@@ -145,7 +145,8 @@ disp('calculating kurtosis');
 kurtosis_features_t = squeeze(kurtosis(window_data,0,1))';
 % calculating skewness for each axis of each sensor in the spectral domain
 kurtosis_features_f = squeeze(kurtosis(P1,0,1))';
-
+disp(size(kurtosis_features_f));
+disp(size(kurtosis_features_t));
 % packing all features into a design matrix, to be merged with other
 % features
 features_out = [ar_features, stdev_features, maxval_features, ...
