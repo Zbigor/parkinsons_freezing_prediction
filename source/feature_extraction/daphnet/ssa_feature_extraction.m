@@ -12,19 +12,41 @@ function [features_ssa,eigenmatrix] = ssa_feature_extraction(window_data)
 
 % forming trajectory matrix
 
-window_data = normalize(window_data);
+window_data = normalize(window_data,'range');
 trajectory_matrix = [squeeze(window_data(:,1,:));...
                      squeeze(window_data(:,2,:));...
-                     squeeze(window_data(:,3,:))];
+                     squeeze(window_data(:,3,:))]';
 dim = size(window_data);
+disp(dim);
 K = dim(3);
 % covariance matrix
 %C = (trajectory_matrix * (trajectory_matrix'))/K;
-C = cov(trajectory_matrix);
-disp(C);
-disp(dim(C));
+
+% ind1 = sum(sum(isnan(trajectory_matrix)));
+% ind2 = sum(sum(isinf(trajectory_matrix)));
+%disp(ind1);
+%disp(ind2);
+% if (ind1 || ind2)
+%     % disp(trajectory_matrix(isnan(trajectory_matrix)));
+%     disp('error')
+% end
+disp('Calculating covariance for ssa');
+C = cov(trajectory_matrix/sqrt(dim(3)));
+% disp('C_info')
+% 
+% disp(size(C));
+% ind1 = sum(sum(isnan(C)));
+% %disp(ind1);
+% ind2 = sum(sum(isinf(C)));
+% %disp(ind2)
+% if(ind1||ind2)
+% 
+%     disp('err C')
+% end
 % calculate eigenvectors
-[V,D] = eig(C);  
+disp('calculating eigenvectors for ssa');
+[V,D] = eigs(C,9);
+clearvars C
 % extract the diagonal
 D = diag(D);      
 % sort eigenvalues
@@ -32,8 +54,11 @@ D = diag(D);
 % and eigenvectors
 V = V(:,ind); 
 % maybe extend to more than 10 based on variance explained
-V = V(1:10,:);
-features_ssa = (V * trajectory_matrix)';
+% V = V(1:5,:);
+disp(size(trajectory_matrix));
+disp(size(V));
+features_ssa = trajectory_matrix*V;
 eigenmatrix = V;
+clearvars V 
 end
 

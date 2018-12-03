@@ -131,17 +131,13 @@ disp(size(freezing_index));
 % by dividing it with its sum, then applying the mean operator
 disp('calculating centre of mass');
 centroid_features = squeeze(mean(full_spectre./sum(full_spectre)))';
-disp('dimensions of center of mass');
-disp('calculating skewness');
+disp('dimensions of c')
 % calculating skewness for each axis of each sensor in the time domain
 skewness_features_t = squeeze(skewness(window_data,0,1))';
 % calculating skewness for each axis of each sensor in the spectral domain
 skewness_features_f = squeeze(skewness(P1,0,1))';
-disp('dimensions of skewness');
-disp(size(skewness_features_t));
-disp(size(skewness_features_f));
+
 % calculating skewness for each axis of each sensor in the time domain
-disp('calculating kurtosis');
 kurtosis_features_t = squeeze(kurtosis(window_data,0,1))';
 % calculating skewness for each axis of each sensor in the spectral domain
 kurtosis_features_f = squeeze(kurtosis(P1,0,1))';
@@ -153,8 +149,8 @@ features_out = [ar_features, stdev_features, maxval_features, ...
                 freezing_index, centroid_features, skewness_features_t,...
                 skewness_features_f, kurtosis_features_t, ... 
                 kurtosis_features_f];
-disp('total size of spectral features');
-disp(size(features_out));            
+
+            
             
 end
 

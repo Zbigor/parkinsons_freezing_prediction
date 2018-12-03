@@ -24,30 +24,35 @@ clear window_data_struct
 means_features = window_means(window_data);
 increments_features = mean_value_increments(means_features);
 % Performing multiple Singular Spectrum Analysis for each sensor
+disp('performing SSA for sensor 1');
 [features_sensor1,eigvect_sensor1] = ssa_feature_extraction(...
                                      window_data(:,2:4,:));
-[features_sensor2,eigvect_sensor2] = ssa_feature_extraction(...
-                                     window_data(5:7)); 
-[features_sensor3,eigvect_sensor3] = ssa_feature_extraction(...
-                                     window_data(8:10)); 
+disp('performing SSA for sensor 2');
 
+[features_sensor2,eigvect_sensor2] = ssa_feature_extraction(...
+                                     window_data(:,5:7,:)); 
+disp('performing SSA for sensor 3');
+                                 
+[features_sensor3,eigvect_sensor3] = ssa_feature_extraction(...
+                                     window_data(:,8:10,:)); 
+disp('extracting rest of the features');
 design_matrix = [means_features, increments_features,... 
-                 increment_differences(incremens_features),...
+                 increment_differences(increments_features),...
                  standard_deviation(window_data),...
                  pairwise_correlation(window_data),...
                  integration_features(window_data),...
-                 spectral_features(window_data),...
+                 spectral_features(window_data,sample_freq),...
                  features_sensor1, ...
                  features_sensor2,...
                  features_sensor3,...
                  ];
 % eigenvectors for extracting each sensor's principal modes (SSA components)
-eigenvectors = [eigvect_sensor1', eigvect_sensor2', eigvect_sensor3'];
+eigenvectors = [eigvect_sensor1, eigvect_sensor2, eigvect_sensor3];
 
-folder_name = 'eigenvectors';
+
 output_data_path = path;
-filename = 'ID';
-name = strcat(output_data_path,folder_name,'/',filename);
+filename = 'eigenvectors25';
+name = strcat(output_data_path,filename);
 save(name,'eigenvectors');
 
 % saving design matrix in libsvm compatible format, also in a mat file
@@ -57,11 +62,13 @@ training_labels_st = load(file);
 training_labels = training_labels_st.training_labels;
 features = normalize(design_matrix,'range');
 features_sparse = sparse(features);
-libsvmwrite('design_matrix.train',labels, features_sparse);
+old_folder = pwd;
+cd ../../libsvm-3.23/matlab/
+libsvmwrite('design_matrix25.train',training_labels, features_sparse);
 filename = 'design_matrix_25';
 name = strcat(path,folder_name,filename);
 save(name,'design_matrix');
-             
+cd(old_folder);             
              
              
              
