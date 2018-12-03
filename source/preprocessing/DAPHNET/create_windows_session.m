@@ -3,6 +3,8 @@ function [] = create_windows_session(num_samp, num_overlap, ...
 
 struct_file = load(input_data_file);
 data = struct_file.data;
+% data shape
+dim = size(data);
 % window iterator
 it_w = int64(1);
 % current sample at the start of the window
@@ -14,10 +16,12 @@ disp(length(data));
 disp('windows count');
 disp(windows_count)
 windows = repmat(struct('data', data(1,:), 'label', 1),1, windows_count);
+windows_3D = repmat(zeros(num_samp,dim(2),1),[1,1,windows_count]);
 
 while it_w <= windows_count
     
     windows(it_w).data = data(head:head+num_samp-1,:);
+    windows_3D(:,:,it_w) = windows(it_w).data;
     samp_labels =  windows(it_w).data(:,11);
     % setting window labels
     % at least one fog sample means the window is fog
@@ -40,9 +44,15 @@ end
 folder_name = strcat('length',num2str(settingsID));
 mkdir(strcat(output_data_path,folder_name));
 
+% saving windows in a structure
 filename = erase(filename,'.txt');
 name = strcat(output_data_path,folder_name,'/',filename);
 save(name,'windows');
+% saving windows in 3D matrices
+filename = strcat('3D_',filename);
+name = strcat(output_data_path,folder_name,'/',filename);
+save(name,'windows_3D');
+clear windows_3D
 clear windows
 clear data
 end
