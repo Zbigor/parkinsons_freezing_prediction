@@ -66,13 +66,7 @@ name = strcat(output_data_path,folder_name,'/',filename);
 save(name,'test_set');
 
 % saving the labels
-filename = strcat('training_labels_',num2str(settingsID));
-name = strcat(output_data_path,folder_name,'/',filename);
-save(name,'training_labels');
 
-filename = strcat('test_labels_',num2str(settingsID));
-name = strcat(output_data_path,folder_name,'/',filename);
-save(name,'test_labels');
 
 error_code = 0;
 end

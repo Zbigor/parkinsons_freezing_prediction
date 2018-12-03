@@ -50,17 +50,15 @@ filename = 'ID';
 name = strcat(output_data_path,folder_name,'/',filename);
 save(name,'eigenvectors');
 
-% saving design matrix in libsvm compatible format, also in a mat file
 path = '../../../data/DAPHNET_mat_files/windows/length25/';
 file = strcat(path,'training_labels_25.mat');
 training_labels_st = load(file);
 training_labels = training_labels_st.training_labels;
 features = normalize(design_matrix,'range');
 features_sparse = sparse(features);
+
 libsvmwrite('design_matrix.train',labels, features_sparse);
-filename = 'design_matrix_25';
-name = strcat(path,folder_name,filename);
-save(name,'design_matrix');
+
              
              
              

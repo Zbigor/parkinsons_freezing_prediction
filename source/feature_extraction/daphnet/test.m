@@ -72,18 +72,29 @@ v = ones(length(R),1);
 indices = (R< 0.7) .* (R > -0.7)+diag(v);
 
 
-x = normalize(x);
-trajectory_matrix = [squeeze(x(:,1,:));squeeze(x(:,2,:));...
-                     squeeze(x(:,3,:))];
-dim = size(x);
-K = dim(3);
-C = (trajectory_matrix * trajectory_matrix')/K;
-[V,D] = eig(C);  
-D = diag(D);      % extract the diagonal
-[D,ind]=sort(D,'descend'); % sort eigenvalues
-V = V(:,ind);             % and eigenvectors
-V = V(1:5,:);
-features_ssa = (V * trajectory_matrix)';
+% x = normalize(x);
+% trajectory_matrix = [squeeze(x(:,1,:));squeeze(x(:,2,:));...
+%                      squeeze(x(:,3,:))];
+% dim = size(x);
+% K = dim(3);
+% C = (trajectory_matrix * trajectory_matrix')/K;
+% [V,D] = eig(C);  
+% D = diag(D);      % extract the diagonal
+% [D,ind]=sort(D,'descend'); % sort eigenvalues
+% V = V(:,ind);             % and eigenvectors
+% V = V(1:5,:);
+% features_ssa = (V * trajectory_matrix)';
+
+m = zeros(2,3,1);
+m = cat(3,m,[1,2,3;1,2,3]);
+m = cat(3,m,[4,5,6;4,5,6]);
+m = cat(3,m,[7,8,9;7,8,9]);
+m = cat(3,m,[11,12,13;11,12,13]);
+
+fns = m(1,:,:);
+fsq = squeeze(fns)';
+lns = m(1,3,:)
+
 
 
 

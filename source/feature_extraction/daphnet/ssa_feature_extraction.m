@@ -19,7 +19,10 @@ trajectory_matrix = [squeeze(window_data(:,1,:));...
 dim = size(window_data);
 K = dim(3);
 % covariance matrix
-C = (trajectory_matrix * trajectory_matrix')/K;
+%C = (trajectory_matrix * (trajectory_matrix'))/K;
+C = cov(trajectory_matrix);
+disp(C);
+disp(dim(C));
 % calculate eigenvectors
 [V,D] = eig(C);  
 % extract the diagonal
