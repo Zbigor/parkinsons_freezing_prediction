@@ -12,16 +12,11 @@ old_folder = pwd;
 cd  ../../libsvm-3.23/matlab/
 [data_label, data_inst] = libsvmread(input_data_path);
 fprintf(fileID, 'number of class1 \n\n');
-cl1 = sum(data_label==1);
+cl1 = sum(data)
 fprintf(fileID, '%d',cl1);
 
-fprintf(fileID, 'number of class 2 \n\n');
-cl2 = sum(data_label==2);
-fprintf(fileID, '%d',cl2);
-
-fprintf(fileID, 'number of class 3 \n\n');
-cl3 = sum(data_label==3);
-fprintf(fileID, '%d',cl3);
+fprintf(fileID, 'Input data read \n\n');
+fprintf(fileID, 'Input data read \n\n');
 
 fprintf(fileID, 'Input data read \n\n');
 % cross-validation parameter

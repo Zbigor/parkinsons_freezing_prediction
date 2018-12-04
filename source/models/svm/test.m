@@ -8,7 +8,22 @@ filename = 'svm_model_25.mod';
 disp('Commencing model training');
 [results,g,c] = train_svm_bayesian(input_data_path,output_data_path,...
                               class_imbalance_weights, filename);
+save(results,'results');
 
+% fileID = fopen('../../../data/logs/svm/svm_log.txt','a');
+% 
+% for it = 1:26
+% 
+% n = 3;
+% pause(n);
+% 
+% 
+% fprintf(fileID, 'Testing the logfile synchronisation \n\n');
+% y = [it, it*n];
+% fprintf(fileID,'%f %f\n',y);
+% 
+% end
+% fclose(fileID);
 
 % clearvars
 % load fisheriris
