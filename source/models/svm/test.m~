@@ -3,12 +3,11 @@ input_data_path = '../../../data/DAPHNET_mat_files/windows/length25/final/design
 output_data_path = '../../../data/DAPHNET_mat_files/windows/length25/final/';
 
 class_imbalance_weights = [0.1,5,10];
-filename = 'svm_model_25';
+filename = 'svm_model_25;
 
 disp('Commencing model training');
 [results,g,c] = train_svm_bayesian(input_data_path,output_data_path,...
                               class_imbalance_weights, filename);
-
 % fileID = fopen('../../../data/logs/svm/svm_log.txt','a');
 % 
 % for it = 1:26
@@ -27,7 +26,8 @@ disp('Commencing model training');
 % clearvars
 % load fisheriris
 % 
-% % labels = zeros(length(species),1);
+% 
+% labels = zeros(length(species),1);
 % for it = 1:length(species)
 %     if (species{it} == "setosa")
 %         labels(it) = 1;

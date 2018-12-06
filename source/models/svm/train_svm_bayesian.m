@@ -74,12 +74,11 @@ minfn = @(x)svm_objective_function(x,class_imbalance_weights, cv_param,...
                                   data_label, data_inst); 
 disp('Commencing Bayesian Optimization');
 fprintf(fileID, 'Bayesian optimization started \n\n');
-fclose(fileID);
 results = bayesopt(minfn,x,'IsObjectiveDeterministic',true,...
-                   'NumCoupledConstraints',6,...
+                   'NumCoupledConstraints',7,...
                    'UseParallel',true,...
                    'AcquisitionFunctionName','expected-improvement-plus', ...
-                   'MaxObjectiveEvaluations',60, ...
+                   'MaxObjectiveEvaluations',12, ...
                    'NumSeedPoints',8, ...
                    'SaveFileName','December6.mat',...
                    'Verbose',1);
@@ -89,15 +88,28 @@ save(rname,'results');
 g = results.XAtMinObjective.gamma;
 c = results.XAtMinObjective.box;
 model_params = "-c " + string(c) + " -g " + string(g);
-model_params = model_params + " -w1 " + string(w1) + " -w2 " + string(w2);
-model_params = model_params + " -w3 " + string(w3) + " -b 1"+ " -m " + string(6500);
+% model_params = model_params + " -w1 " + string(w1) + " -w2 " + string(w2);
+model_params = model_params + " -b 1"+ " -m " + string(6500);
 
 model_params = char(model_params);
 % training the model with optimized parameters
 cd ../../libsvm-3.23/matlab/
 disp('training the model with optimized parameters');
 model = svmtrain(data_label, data_inst,model_params);
+% testing the model on full training set
+[predicted_labels, accuracy, probs] = svmpredict(data_label,...
+                                                 data_inst, model,' -b 1');
+
+fprintf(fileID,'Final accuracy on whole training set \n');                                             
+fprintf(fileID,'%f',accuracy);
+C = confusionmat(data_label,predicted_labels,'Order',[1,2,3]);
+fprintf(fileID,'Final confusion matrix \n\n');                                             
+fmt = '%f %f %f\n';
+fprintf(fileID,fmt,C);
+disp(C);
 cd(old_folder)
+fclose(fileID);
+
 % exporting the model
 name = strcat(output_data_path,filename);
 save(name,'model');

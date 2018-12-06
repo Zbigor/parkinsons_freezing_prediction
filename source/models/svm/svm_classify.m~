@@ -21,7 +21,7 @@ w3 = class_imbalance_weights(3);
 % building the string of parameters 
 % training without the probabilities since they are not taken into account
 % for optimization
-model_params = "-c " + string(x.box) + " -g " + string(x.gamma);
+model_params = "-c " + string(x.box) + " -g " + string(x.gamma) + string(100);
 % model_params = model_params + " -w1 " + string(w1) + " -w2 " + string(w2);
 % model_params = model_params + " -w3 " + string(w3) + " -m "+ string(6400);
 model_params = model_params + " -m "+ string(6400) + " -b 1";
@@ -36,7 +36,7 @@ num_sv = model.totalSV;
 disp('generating predicted labels');
 fprintf(fileID, 'Generated predicted labels \n\n');
 [predicted_labels, accuracy, vals] = svmpredict(test_labels,...
-                                                  test_data, model,'-b 1');
+                                                  test_data, model, -b 1');
 fclose(fileID);
 cd(old_folder);
 
