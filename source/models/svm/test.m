@@ -2,7 +2,7 @@ input_data_path = '../../../data/DAPHNET_mat_files/windows/length25/final/design
 
 output_data_path = '../../../data/DAPHNET_mat_files/windows/length25/final/';
 
-class_imbalance_weights = [1.0,1.0,1.0];
+class_imbalance_weights = [0.1,5,10];
 filename = 'svm_model_25.mod';
 
 disp('Commencing model training');
