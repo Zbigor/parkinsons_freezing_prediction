@@ -6,7 +6,6 @@ class_imbalance_weights = [0.1,1.0,2.0];
 w1 = class_imbalance_weights(1);
 w2 = class_imbalance_weights(2);
 w3 = class_imbalance_weights(3);                           
-global num_sv;
 
 order = [1 2 3];
 % splitting the data for k-fold crossvalidation
@@ -54,40 +53,53 @@ spec_fog = cfMat(2,2)/sum(cfMat(:,2));
 spec_prefog = cfMat(3,3)/sum(cfMat(:,3));
 
 % objective function value is minimized, hence maximizing accuracy 
-objective = -100*sens_prefog - 100*sens_fog - 100*sens_gait + num_sv;
+objective = -100*sens_prefog - 100*sens_fog - 100*sens_gait;
 % forming the coupled constraints
 % initially all constraints violated
 % all constraints are satisfied if all sensitivities and specificities are
 % at least 75 %
 constraints = ones(7,1);
+constraints(1) = 0.75-sens_gait;
+constraints(2) = 0.75-sens_fog;
+constraints(3) = 0.75-sens_prefog;
+constraints(4) = 0.75-spec_gait;
+constraints(5) = 0.75-spec_fog;
+constraints(6) = 0.75-spec_prefog;
+num_file = load('NSV');
+constraints(7) = num_file.num_sv - 100;
+% if(sens_gait > 0.75)
+%     constraints(1) = -1;
+% end
+% 
+% if(sens_fog > 0.75)
+%     constraints(2) = -1;
+% end
+% 
+% if(sens_prefog > 0.75)
+%     constraints(3) = -1;
+% end
+% 
+% if(spec_gait > 0.75)
+%     constraints(4) = -1;
+% end
+% 
+% if(spec_fog > 0.75)
+%     constraints(5) = -1;
+% end
+% 
+% if(spec_prefog >0.75)
+%     constraints(6) = -1;
+% end
+disp('SV');
+disp(num_file.num_sv);
+disp('');
+fprintf(fileID,'Num SV\n');
+fprintf(fileID,'%d',num_file.num_sv);
+fprintf(fileID,'Num SV\n');
 
-if(sens_gait > 0.75)
-    constraints(1) = -1;
-end
-
-if(sens_fog > 0.75)
-    constraints(2) = -1;
-end
-
-if(sens_prefog > 0.75)
-    constraints(3) = -1;
-end
-
-if(spec_gait > 0.75)
-    constraints(4) = -1;
-end
-
-if(spec_fog > 0.75)
-    constraints(5) = -1;
-end
-
-if(spec_prefog >0.75)
-    constraints(6) = -1;
-end
-
-if(num_sv<120)
-    constraints(7) = -1;
-end
+% if(num_sv<120)
+%     constraints(7) = -1;
+% end
 
 fmt = '%f %f %f %f %f %f %f\n';
 fprintf(fileID,fmt, constraints);

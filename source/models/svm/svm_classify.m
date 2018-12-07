@@ -32,6 +32,7 @@ disp('training the model');
 fprintf(fileID, 'Training a model for given parameters \n\n');
 model = svmtrain(training_labels, training_data, model_params);
 num_sv = model.totalSV;
+
 % predicted labels at the output
 disp('generating predicted labels');
 fprintf(fileID, 'Generated predicted labels \n\n');
@@ -39,6 +40,7 @@ fprintf(fileID, 'Generated predicted labels \n\n');
                                                   test_data, model,'-b 1');
 fclose(fileID);
 cd(old_folder);
-
+rname = 'NSV';
+save(rname,'num_sv');
 end
 
