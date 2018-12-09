@@ -18,7 +18,7 @@ files = dir(strcat(input_path,'*.mat'));
 total = length(files);
 elapsed = 0;
 % somehow identify current configuration of parameters
-settingsID = 25;
+settingsID = 35;
 % initializing training and test 3D matrices
 training_set = [];
 training_labels = [];
@@ -38,7 +38,7 @@ for file = files'
     labels_file = strcat(folder_path,strcat('labels_',file.name));
     out_data_struct = load(output_data_file);
     labels_struct = load(labels_file);
-    if (file.name == "S03R01.mat")||(file.name == "S05R01.mat")
+    if (file.name == "S09R01.mat")
         test_set = cat(3,test_set,out_data_struct.windows_3D);
         test_labels = cat(1,test_labels, labels_struct.window_labels);
     else

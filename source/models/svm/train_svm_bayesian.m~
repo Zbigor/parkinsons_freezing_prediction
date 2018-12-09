@@ -25,31 +25,31 @@ fprintf(fileID, '%d',cl3);
 
 % downsampling the majority datasets
 
-label_cl1 = data_label(data_label == 1);
-label_cl2 = data_label(data_label == 2);
-label_cl3 = data_label(data_label == 3);
+% label_cl1 = data_label(data_label == 1);
+% label_cl2 = data_label(data_label == 2);
+% label_cl3 = data_label(data_label == 3);
 
 % random shuffling vector indices
-shuffle = @(v)v(randperm(numel(v)));
-
-label_cl1 = shuffle(label_cl1);
-label_cl2 = shuffle(label_cl2);
-label_cl3 = shuffle(label_cl3);
-
-data_cl1 = data_inst(label_cl1,:);
-data_cl2 = data_inst(label_cl2,:);
-data_cl3 = data_inst(label_cl3,:);
-
-data_length = length(label_cl3);
-
-data_cl1 = data_cl1(1:data_length,:);
-data_cl2 = data_cl2(1:data_length,:);
-label_cl1 = label_cl1(1:data_length);
-label_cl2 = label_cl2(1:data_length);
-
-data_inst = [data_cl1;data_cl2;data_cl3];
-data_label = [label_cl1;label_cl2;label_cl3];
-disp(data_label);
+% shuffle = @(v)v(randperm(numel(v)));
+% 
+% label_cl1 = shuffle(label_cl1);
+% label_cl2 = shuffle(label_cl2);
+% label_cl3 = shuffle(label_cl3);
+% 
+% data_cl1 = data_inst(label_cl1,:);
+% data_cl2 = data_inst(label_cl2,:);
+% data_cl3 = data_inst(label_cl3,:);
+% 
+% data_length = length(label_cl3);
+% 
+% data_cl1 = data_cl1(1:data_length,:);
+% data_cl2 = data_cl2(1:data_length,:);
+% label_cl1 = label_cl1(1:data_length);
+% label_cl2 = label_cl2(1:data_length);
+% 
+% data_inst = [data_cl1;data_cl2;data_cl3];
+% data_label = [label_cl1;label_cl2;label_cl3];
+% disp(data_label);
 % dimensions of the resampled dataset
 dims = size(data_inst);
 disp(dims);
@@ -76,10 +76,13 @@ disp('Commencing Bayesian Optimization');
 fprintf(fileID, 'Bayesian optimization started \n\n');
 results = bayesopt(minfn,x,'IsObjectiveDeterministic',true,...
                    'NumCoupledConstraints',7,...
-                   'UseParallel',true,...
+                   'UseParallel',false,...
                    'AcquisitionFunctionName','expected-improvement-plus', ...
-                   'MaxObjectiveEvaluations',15, ...
-                   'NumSeedPoints',8, ...
+                   'MaxObjectiveEvaluations',30, ...
+                   'ExplorationRatio', 0.8, ...
+                   'GPActiveSetSize', 400,...
+                   'UseParallel',false,...
+                   'NumSeedPoints',12, ...
                    'SaveFileName','December6.mat',...
                    'Verbose',1);
 rname = 'training_res';
@@ -89,7 +92,8 @@ g = results.XAtMinObjective.gamma;
 c = results.XAtMinObjective.box;
 model_params = "-c " + string(c) + " -g " + string(g);
 model_params = model_params + " -w1 " + string(w1) + " -w2 " + string(w2);
-model_params = model_params + " -w3 " + string(w3) + " -b 1"+ " -m " + string(6500);
+model_params = model_params 
+model_params = model_params + " -b 1"+ " -m " + string(6500);
 
 model_params = char(model_params);
 % training the model with optimized parameters
@@ -97,10 +101,16 @@ cd ../../libsvm-3.23/matlab/
 disp('training the model with optimized parameters');
 model = svmtrain(data_label, data_inst,model_params);
 % testing the model on full training set
-[predicted_labels, accuracy, probs] = svmpredict(data_labels,...
-                                                 test_data, model, -b1);
+[predicted_labels, accuracy, probs] = svmpredict(data_label,...
+                                                 data_inst, model,' -b 1');
+
+fprintf(fileID,'Final accuracy on whole training set \n');                                             
 fprintf(fileID,'%f',accuracy);
-C = confusionmat(group,grouphat,'Order',grouporder)
+C = confusionmat(data_label,predicted_labels,'Order',[1,2,3]);
+fprintf(fileID,'Final confusion matrix \n\n');                                             
+fmt = '%f %f %f\n';
+fprintf(fileID,fmt,C);
+disp(C);
 cd(old_folder)
 fclose(fileID);
 

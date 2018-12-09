@@ -1,13 +1,17 @@
-input_data_path = '../../../data/DAPHNET_mat_files/windows/length25/final/design_matrix25.train'; 
+input_data_path = '../../../data/DAPHNET_mat_files/windows/length35/final/design_matrix_min.train'; 
 
-output_data_path = '../../../data/DAPHNET_mat_files/windows/length25/final/';
+output_data_path = '../../../data/DAPHNET_mat_files/windows/length35/final/';
 
-class_imbalance_weights = [0.1,5,10];
-filename = 'svm_model_25';
+class_imbalance_weights = [0.1,0.1,0.1];
+filename = 'svm_model_35_min';
 
 disp('Commencing model training');
 [results,g,c] = train_svm_bayesian(input_data_path,output_data_path,...
                               class_imbalance_weights, filename);
+
+
+% train_svm_model(input_data_path,output_data_path,...
+%                               class_imbalance_weights, filename);
 
 % fileID = fopen('../../../data/logs/svm/svm_log.txt','a');
 % 

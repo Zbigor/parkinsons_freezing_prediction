@@ -22,12 +22,12 @@ cd  ../../libsvm-3.23/matlab/
     % cross-validation parameter
     cv_param = 5;
     % exponents for the parameter C
-    c_exp = linspace(-5,15,11);
+    c_exp = linspace(-3,4,9);
     % exponents for the parameter gamma
-    g_exp = linspace(-15,3,10);
+    g_exp = linspace(-6,3,5);
     cd(old_folder)
     % number of iteration, 'zooming in' around the best tuple for each iter
-    N_zooms = 6;
+    N_zooms = 1;
     c_best = 0;
     g_best = 0;
     best_accuracy = 0;
@@ -56,9 +56,9 @@ cd  ../../libsvm-3.23/matlab/
     g = pow2(g_exp(g_best));
     model_params = "-c " + string(c) + " -g " + string(g);
     model_params = model_params + " -w1 " + string(w1) + " -w2 " + string(w2);
-    % model_params = model_params + " -w3 " + string(w3) + " -b 1";
+    model_params = model_params + " -w3 " + string(w3) + " -b 1" + " -m" + string(6400) + " -q 0";
     % for testing purposes with 2 classes
-    model_params = model_params + " -b 1";
+%     model_params = model_params + " -b 1";
     model_params = char(model_params);
     % training the model with optimized parameters
     cd ../../libsvm-3.23/matlab/

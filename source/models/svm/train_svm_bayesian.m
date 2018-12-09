@@ -40,16 +40,16 @@ data_cl1 = data_inst(label_cl1,:);
 data_cl2 = data_inst(label_cl2,:);
 data_cl3 = data_inst(label_cl3,:);
 
-data_length = length(label_cl3);
+data_length = length(label_cl2);
 
-data_cl1 = data_cl1(1:data_length,:);
-data_cl2 = data_cl2(1:data_length,:);
-label_cl1 = label_cl1(1:data_length);
-label_cl2 = label_cl2(1:data_length);
+% data_cl1 = data_cl1(1:data_length,:);
+% data_cl2 = data_cl2(1:data_length,:);
+% label_cl1 = label_cl1(1:data_length);
+% label_cl2 = label_cl2(1:data_length);
 
 data_inst = [data_cl1;data_cl2;data_cl3];
 data_label = [label_cl1;label_cl2;label_cl3];
-disp(data_label);
+%disp(data_label);
 % dimensions of the resampled dataset
 dims = size(data_inst);
 disp(dims);
@@ -75,14 +75,14 @@ minfn = @(x)svm_objective_function(x,class_imbalance_weights, cv_param,...
 disp('Commencing Bayesian Optimization');
 fprintf(fileID, 'Bayesian optimization started \n\n');
 results = bayesopt(minfn,x,'IsObjectiveDeterministic',true,...
-                   'NumCoupledConstraints',7,...
+                   'NumCoupledConstraints',8,...
                    'UseParallel',false,...
                    'AcquisitionFunctionName','expected-improvement-plus', ...
-                   'MaxObjectiveEvaluations',15, ...
-                   'ExplorationRatio', 0.8, ...
-                   'GPActiveSetSize', 400,...
+                   'MaxObjectiveEvaluations',16, ...
+                   'ExplorationRatio', 0.6, ...
+                   'GPActiveSetSize', 30,...
                    'UseParallel',false,...
-                   'NumSeedPoints',12, ...
+                   'NumSeedPoints',8, ...
                    'SaveFileName','December6.mat',...
                    'Verbose',1);
 rname = 'training_res';
@@ -91,8 +91,9 @@ save(rname,'results');
 g = results.XAtMinObjective.gamma;
 c = results.XAtMinObjective.box;
 model_params = "-c " + string(c) + " -g " + string(g);
-% model_params = model_params + " -w1 " + string(w1) + " -w2 " + string(w2);
-model_params = model_params + " -b 1"+ " -m " + string(6500);
+model_params = model_params + " -w1 " + string(w1) + " -w2 " + string(w2);
+model_params = model_params + " -w3 " + string(w3);
+model_params = model_params + " -b 1"+ " -m " + string(7500);
 
 model_params = char(model_params);
 % training the model with optimized parameters

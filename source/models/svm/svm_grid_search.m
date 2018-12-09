@@ -7,7 +7,7 @@ old_folder = pwd;
 cd ../../libsvm-3.23/matlab/
 
 % initializing class imbalance weights, actual values TO BE DETERMINED
-class_imbalance_weights = [1.0,1.0,1.0];
+class_imbalance_weights = [0.1,1.0,2.0];
 w1 = class_imbalance_weights(1);
 w2 = class_imbalance_weights(2);
 w3 = class_imbalance_weights(3);
@@ -25,17 +25,20 @@ for it_c = 1:length(c_exp)
         % building the string of parameters 
         model_params = "-c " + string(c) + " -g " + string(g) + " -v " + string(cv_param);
         model_params = model_params + " -w1 " + string(w1) + " -w2 " + string(w2);
-        model_params = model_params + " -w3 " + string(w3) + " -b 1";
+        model_params = model_params + " -w3 " + string(w3) + " -b 0" + " -m " + string(6400) ;
         % conversion to char array
         model_params = char(model_params); 
         % Do k-fold cross validation for the classifier
+        disp('training started');
         cv_accuracy = svmtrain(data_label, data_inst, model_params);
+        disp('training ended');
+
         if cv_accuracy>best_accuracy
             best_accuracy = cv_accuracy;
             c_best = it_c;
             g_best = it_g;
         end
-        
+        disp(best_accuracy);
     end
 
 end
