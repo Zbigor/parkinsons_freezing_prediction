@@ -1,0 +1,61 @@
+function [clean_data,raw_intervals] = clean_windows_personalized(input_file,...
+                                               labels_file, window_length,...
+                                               sample_rate, overlap_length)
+%CLEAN_WINDOWS_PERSONALIZED Summary of this function goes here
+%   Detailed explanation goes here
+input_path = strcat('../../../data/DAPHNET_txt_data/',input_file);
+labels_path = strcat('../../../data/DAPHNET_txt_data/',labels_file);
+raw_data = load(input_path);
+raw_intervals = floor(64*load(labels_path));
+clean_gait = [];
+clean_fog = [];
+num_samp = window_length * sample_rate;
+num_overlap = overlap_length * sample_rate;
+for it_in = 1:length(raw_intervals)
+   
+    if raw_intervals(it,1) ~= 0
+    
+        gait_data = raw_data(raw_intervals(it,1):raw_intervals(it,2),:);
+        % window iterator
+        it_w = int64(1);
+        % current sample at the start of the window
+        head = int64(1);
+        % number of windows
+        windows_count = int64(fix((length(gait_data)-num_overlap)/(num_samp-num_overlap)));
+        
+        while it_w <= windows_count    
+        
+            clean_gait = cat(3,clean_gait,gait_data(head:head+num_samp-1,:));
+            it_w = it_w + 1;
+            head = head + num_samp -1 - num_overlap;
+        end
+      
+    end
+    
+    if raw_intervals(it,3) ~= 0
+    
+        fog_data = raw_data(raw_intervals(it,2):raw_intervals(it,3),:);
+        % window iterator
+        it_w = int64(1);
+        % current sample at the start of the window
+        head = int64(1);
+        % number of windows
+        windows_count = int64(fix((length(_data)-num_overlap)/(num_samp-num_overlap)));
+        
+        while it_w <= windows_count    
+        
+            clean_gait = cat(3,clean_gait,gait_data(head:head+num_samp-1,:));
+            it_w = it_w + 1;
+            head = head + num_samp -1 - num_overlap;
+        end
+      
+    end
+    
+    
+    
+end
+
+
+clean_data = raw_data;
+end
+
