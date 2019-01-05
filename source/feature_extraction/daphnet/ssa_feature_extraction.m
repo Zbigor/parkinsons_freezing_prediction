@@ -45,7 +45,7 @@ C = cov(trajectory_matrix/sqrt(dim(3)));
 % end
 % calculate eigenvectors
 disp('calculating eigenvectors for ssa');
-[V,D] = eigs(C,9);
+[V,D] = eigs(C,5);
 clearvars C
 % extract the diagonal
 D = diag(D);      

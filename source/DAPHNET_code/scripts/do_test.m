@@ -1,4 +1,5 @@
-datadir = '../dataset/';
+datadir = 'datadir/';
+%datadir = pwd;
 SR = 64;            % Sample rate in herz
 stepSize=32;        % Step size in samples
 offDelay=2;         % Evaluation delay in seconds: tolerates delay after detecting
@@ -17,7 +18,7 @@ TH.power   = 2.^ 12 ;
 % axis: 0=horizontal forward, 1=vertical, 2=horizontal lateral
 
 % 4,10 have no freeze
-for isubject=[1:3]
+for isubject=[5:8]
     
     % 0:2
     for isensor=0:0

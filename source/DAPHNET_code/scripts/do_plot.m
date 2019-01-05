@@ -1,5 +1,6 @@
 function do_plot(file)
     data = load(file);
+    data(:,2:10) = data(:,2:10);
 %    clear;
 %   data = load('../../../data/DAPHNET_txt_data/S01R01.txt');
 

@@ -69,6 +69,8 @@ save(strcat(output_data_path,'settings_id.mat'),'settingsID');
 training_data = cat(3,clean_gait,clean_fog);
 save(strcat(output_data_path,folder_name,'/','training_data.mat'),'training_data');
 
+training_labels = [ones(length(clean_gait(1,1,:)),1);2*ones(length(clean_fog(1,1,:)),1)];
+save(strcat(output_data_path,folder_name,'/','training_labels.mat'),'training_labels');
 
 end
 

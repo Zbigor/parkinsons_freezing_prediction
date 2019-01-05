@@ -1,0 +1,49 @@
+
+path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings11/';
+
+% loading the full design matrix with all extracted features
+file = strcat(path,'design_matrix_s3.mat');
+design_matrix_struct = load(file);
+design_matrix = design_matrix_struct.design_matrix;
+clear design_matrix_struct
+
+% loading the labels
+file = strcat(path,'training_labels.mat');
+labels_struct = load(file);
+labels = labels_struct.training_labels;
+clear labels_struct
+
+
+% minimal set of features
+% just using first channnel (ankle acc horiz forward)
+
+X = design_matrix(:,[1,10,28,37,46,55,64,73,82,91]);
+dim = size(X);
+% labeling as 0 and 1 needed for binomial distribution
+yBinom = labels - 1;
+
+
+
+% fitting a simple binomial logistic regression
+% [B,dev,stats] = glmfit(X, [Y,ones(dim(1),1)], 'binomial', 'link', 'logit');
+c = cvpartition(yBinom,'HoldOut',0.3);
+idxTrain = training(c,1);
+idxTest = ~idxTrain;
+XTrain = X(idxTrain,:);
+yTrain = yBinom(idxTrain);
+XTest = X(idxTest,:);
+yTest = yBinom(idxTest);
+
+[B,FitInfo] = lassoglm(XTrain,yTrain,'binomial','CV',5);
+% lassoPlot(B,FitInfo,'plottype','CV'); 
+% legend('show') % Show legend
+
+idxMinDeviance = FitInfo.IndexMinDeviance;
+B0 = FitInfo.Intercept(idx1SE);
+coef = [B0; B(:,idx1SE)];
+
+yhat = glmval(coef,XTest,'logit');
+yhatBinom = (yhat>=0.5);
+[c,order] = confusionmat(yTest,double(yhatBinom));
+disp(c);
+

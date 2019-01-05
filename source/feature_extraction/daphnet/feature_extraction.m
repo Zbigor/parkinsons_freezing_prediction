@@ -16,13 +16,16 @@
 % convert the script to a function, data path given as input
 % will be called for different window sizes and other hyperparameter values
 sample_freq = 64;
-path = '../../../data/DAPHNET_mat_files/windows/length25/';
-file = strcat(path,'training_set_25.mat');
+path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings11/';
+file = strcat(path,'training_data.mat');
 window_data_struct = load(file);
-window_data = window_data_struct.training_set;
+window_data = window_data_struct.training_data;
 clear window_data_struct
+disp('calculating means');
 means_features = window_means(window_data);
-increments_features = mean_value_increments(means_features);
+disp('dimensions means');
+disp(size(means_features));
+% increments_features = mean_value_increments(means_features);
 % Performing multiple Singular Spectrum Analysis for each sensor
 disp('performing SSA for sensor 1');
 [features_sensor1,eigvect_sensor1] = ssa_feature_extraction(...
@@ -36,8 +39,7 @@ disp('performing SSA for sensor 3');
 [features_sensor3,eigvect_sensor3] = ssa_feature_extraction(...
                                      window_data(:,8:10,:)); 
 disp('extracting rest of the features');
-design_matrix = [means_features, increments_features,... 
-                 increment_differences(increments_features),...
+design_matrix = [means_features,...
                  standard_deviation(window_data),...
                  pairwise_correlation(window_data),...
                  integration_features(window_data),...
@@ -51,24 +53,24 @@ eigenvectors = [eigvect_sensor1, eigvect_sensor2, eigvect_sensor3];
 
 
 output_data_path = path;
-filename = 'eigenvectors25';
+filename = 'eigenvectors3';
 name = strcat(output_data_path,filename);
 save(name,'eigenvectors');
 
 % saving design matrix in libsvm compatible format, also in a mat file
-path = '../../../data/DAPHNET_mat_files/windows/length25/';
-file = strcat(path,'training_labels_25.mat');
-training_labels_st = load(file);
-training_labels = training_labels_st.training_labels;
-features = normalize(design_matrix,'range');
+file = strcat(path,'training_labels.mat');
+labels_data_struct = load(file);
+training_labels = labels_data_struct.training_labels;
+
+features = normalize(design_matrix);
 features_sparse = sparse(features);
+
 old_folder = pwd;
 cd ../../libsvm-3.23/matlab/
-libsvmwrite('design_matrix25.train',training_labels, features_sparse);
-filename = 'design_matrix_25';
-name = strcat(path,filename);
-save(name,'design_matrix');
+libsvmwrite('design_matrix_s3.train',training_labels, features_sparse);
 cd(old_folder);             
              
-             
+filename = 'design_matrix_s3';
+name = strcat(path,filename);
+save(name,'design_matrix');             
              

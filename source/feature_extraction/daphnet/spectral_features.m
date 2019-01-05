@@ -25,32 +25,32 @@ bp_window_data = [];
 ar= [];
 % creating bandpass filters
 % maybe 0.5 instead of 0.68 Hz
-[b1,a1] = butter(3,[0.1 0.68]/(Fs/2),'bandpass');
-[b2,a2] = butter(3,[0.68 3]/(Fs/2),'bandpass');
+% [b1,a1] = butter(3,[0.1 0.68]/(Fs/2),'bandpass');
+[b2,a2] = butter(3,[0.5 3]/(Fs/2),'bandpass');
 [b3,a3] = butter(3,[3 8]/(Fs/2),'bandpass');
-[b4,a4] = butter(3,[8 20]/(Fs/2),'bandpass');
-[b5,a5] = butter(3,[0.68 3]/(Fs/2),'bandpass');
-[b6,a6] = butter(3,[3 8]/(Fs/2),'bandpass');
+% [b4,a4] = butter(3,[8 20]/(Fs/2),'bandpass');
+% [b5,a5] = butter(3,[0.68 3]/(Fs/2),'bandpass');
+[b6,a6] = butter(3,[0.1 20]/(Fs/2),'bandpass');
 disp('entering filtering loop');
 parfor it_w = 1:N_w
     % filtering with filtfilt to avoid phase delay
-    bp_window_data(:,:,it_w) = [filtfilt(b1,a1,window_data(:,:,it_w)), ...
-                                filtfilt(b2,a2,window_data(:,:,it_w)),...
+    bp_window_data(:,:,it_w) = [filtfilt(b2,a2,window_data(:,:,it_w)), ...
                                 filtfilt(b3,a3,window_data(:,:,it_w)),...
-                                filtfilt(b4,a4,window_data(:,:,it_w)),...
-                                filtfilt(b5,a5,window_data(:,:,it_w)),...
                                 filtfilt(b6,a6,window_data(:,:,it_w))...
+%                                 filtfilt(b4,a4,window_data(:,:,it_w)),...
+%                                 filtfilt(b5,a5,window_data(:,:,it_w)),...
+%                                 filtfilt(b6,a6,window_data(:,:,it_w))...
                                 ];
-    ar(:,:,it_w) = arburg(squeeze(window_data(:,:,it_w)),4)';
-    disp(it_w);
+%     ar(:,:,it_w) = arburg(squeeze(window_data(:,:,it_w)),4)';
+%     disp(it_w);
 end
 
 % repacking autoregression coefficients as separate features
-ar_features = [squeeze(ar(1,:,:))', squeeze(ar(2,:,:))',...
-               squeeze(ar(3,:,:))', squeeze(ar(4,:,:))', ... 
-               squeeze(ar(5,:,:))'];
-disp('ar_features dimension');
-disp(size(ar_features));
+% ar_features = [squeeze(ar(1,:,:))', squeeze(ar(2,:,:))',...
+%                squeeze(ar(3,:,:))', squeeze(ar(4,:,:))', ... 
+%                squeeze(ar(5,:,:))'];
+% disp('ar_features dimension');
+% disp(size(ar_features));
 % length of the window
 
 L = dim(1);
@@ -73,6 +73,7 @@ P1(2:end-1,:,:) = 2*P1(2:end-1,:,:);
 disp('Calculate standard deviations');
 stdev_features = squeeze(std(P1(:,1:end-9,:)))';
 disp('standard deviation dimension');
+disp(size(stdev_features));
 % Highest harmonic peaks  
 % Useful for detecting concrete events in specific spectral bands
 % (e.g. high peaks in 0.1Hz to 0.68 Hz band can be considered as a candidate to be a postural
@@ -83,15 +84,16 @@ disp('Extracting 2 highest peaks');
 full_spectre = P1(:,end-8:end,:);
 [maxvalues, ind] = maxk(full_spectre, 2);
 maxval_features = [squeeze(maxvalues(1,:,:))', squeeze(maxvalues(2,:,:))'];
-disp('2 highest peaks dim');
-disp(size(maxval_features));
-clearvars maxvalues
+% disp('2 highest peaks dim');
+% disp(size(maxval_features));
+% clearvars maxvalues
 % maxvalues has dimensions 2 x #channels x #windows and it represents
 % amplitudes of maximum harmonics
 
 % extracting the respective frequencies of the maximum harmonics using the
 % above calculated indices
 % frequency axis
+disp('extracting frequencies with max amplitudes');
 f = Fs*(0:(n/2))/n;
 fmax = f(ind);
 clearvars ind
@@ -106,21 +108,40 @@ disp(size(maxfreq_features));
 % power in this freezing band, which is defined to be between 3 and 8 Hz, as in Ref. (8). This
 % total power: over each axis of each sensor
 disp('Calculating power in the freezing band');
-total_pow_freezing = (sum(squeeze(sum(P1(:,19:27,:).*P1(:,19:27,:)))))';
+total_pow_freezing = [];
+
+parfor it_chan = 1:9
+
+total_pow_freezing(1,:,it_chan) = (...
+                      squeeze(sum(P1(:,it_chan+9,:).*P1(:,it_chan+9,:))))'; 
+
+end
+total_pow_freezing = squeeze(total_pow_freezing);
+% total_pow_freezing = (sum(squeeze(sum(P1(:,10:18,:).*P1(:,10:18,:)))))';
 disp('power in the freezing band size');
 disp(size(total_pow_freezing));
 % Power in the locomotor band
 disp('calc total power locomotor');
-total_pow_locomotor = (sum(squeeze(sum(P1(:,10:18,:).*P1(:,10:18,:)))))';
+
+total_pow_loc = [];
+
+parfor it_chan = 1:9
+
+total_pow_loc(1,:,it_chan) = (squeeze(sum(P1(:,it_chan,:).*P1(:,it_chan,:))))';
+
+end
+total_pow_loc = squeeze(total_pow_loc);
+% total_pow_locomotor = (sum(squeeze(sum(P1(:,1:9,:).*P1(:,1:9,:)))))';
+
 disp('dimensions of total pow locom');
-disp(size(total_pow_locomotor));
+disp(size(total_pow_loc));
 % Freezing index
 % It is the ratio between the power in the freezing band and the power in the locomotor band
 % (8). It is usually used in studies for detecting freezing of gait with inertial sensors. When
 % freezing is already in place, this index tends to show a high value (8, 14, 15).
 % total power: over each axis of each sensor
 disp('calculating freezing index');
-freezing_index = total_pow_freezing./total_pow_locomotor;
+freezing_index = total_pow_freezing./total_pow_loc;
 disp('dimensions of freezing index');
 disp(size(freezing_index));
 % Spectral density centre of mass gives information about the overall 
@@ -132,28 +153,27 @@ disp(size(freezing_index));
 disp('calculating centre of mass');
 centroid_features = squeeze(mean(full_spectre./sum(full_spectre)))';
 disp('dimensions of center of mass');
-disp('calculating skewness');
+disp(size(centroid_features));
+% disp('calculating skewness');
 % calculating skewness for each axis of each sensor in the time domain
-skewness_features_t = squeeze(skewness(window_data,0,1))';
+% skewness_features_t = squeeze(skewness(window_data,0,1))';
 % calculating skewness for each axis of each sensor in the spectral domain
-skewness_features_f = squeeze(skewness(P1,0,1))';
-disp('dimensions of skewness');
-disp(size(skewness_features_t));
-disp(size(skewness_features_f));
+% skewness_features_f = squeeze(skewness(P1,0,1))';
+% disp('dimensions of skewness');
+% disp(size(skewness_features_t));
+% disp(size(skewness_features_f));
 % calculating skewness for each axis of each sensor in the time domain
-disp('calculating kurtosis');
-kurtosis_features_t = squeeze(kurtosis(window_data,0,1))';
+% disp('calculating kurtosis');
+% kurtosis_features_t = squeeze(kurtosis(window_data,0,1))';
 % calculating skewness for each axis of each sensor in the spectral domain
-kurtosis_features_f = squeeze(kurtosis(P1,0,1))';
-disp(size(kurtosis_features_f));
-disp(size(kurtosis_features_t));
+% kurtosis_features_f = squeeze(kurtosis(P1,0,1))';
+% disp(size(kurtosis_features_f));
+% disp(size(kurtosis_features_t));
 % packing all features into a design matrix, to be merged with other
 % features
-features_out = [ar_features, stdev_features, maxval_features, ...
-                maxfreq_features, total_pow_freezing, total_pow_locomotor,...
-                freezing_index, centroid_features, skewness_features_t,...
-                skewness_features_f, kurtosis_features_t, ... 
-                kurtosis_features_f];
+features_out = [stdev_features, maxfreq_features,...
+                total_pow_freezing, total_pow_loc,...
+                freezing_index, centroid_features];
 disp('total size of spectral features');
 disp(size(features_out));            
             
