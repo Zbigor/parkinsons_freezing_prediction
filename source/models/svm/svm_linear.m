@@ -19,6 +19,15 @@ clear labels_struct
 
 % X = [design_matrix(:,1:99), design_matrix(:,109:123)];
 X = design_matrix(:,1:99);
+
+% just the features from the sensor on the ankle 
+% X = design_matrix(:,[1,2,3,10,11,12,28,29,30,37,38,39,46,47,48,55,56,57,...
+%     64,65,66,73,74,75,82,83,84,91,92,93]);
+
+% just the unsupervised on ankle
+% X = design_matrix(:,[109:123]);
+
+
 dim = size(X);
 % X = X(:,[6,8,10]);
 % labeling as -1 and 1 needed for binomial distribution
