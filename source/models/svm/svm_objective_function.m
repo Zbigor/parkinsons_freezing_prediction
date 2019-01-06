@@ -81,11 +81,11 @@ objective = - sens_fog - sens_gait;
 % all constraints are satisfied if all sensitivities and specificities are
 % at least 75 %
 constraints = ones(6,1);
-constraints(1) = 0.75-sens_gait;
-constraints(2) = 0.75-sens_fog;
+constraints(1) = 0.7-sens_gait;
+constraints(2) = 0.7-sens_fog;
 % constraints(3) = 0.75-sens_prefog;
-constraints(3) = 0.75-spec_gait;
-constraints(4) = 0.75-spec_fog;
+constraints(3) = 0.7-spec_gait;
+constraints(4) = 0.7-spec_fog;
 % constraints(6) = 0.75-spec_prefog;
 num_file = load('NSV');
 constraints(5) = num_file.num_sv - 100;

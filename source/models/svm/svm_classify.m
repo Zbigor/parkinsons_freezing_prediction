@@ -22,7 +22,7 @@ w3 = class_imbalance_weights(3);
 % training without the probabilities since they are not taken into account
 % for optimization
 model_params = "-c " + string(x.box) + " -g " + string(x.gamma);
-model_params = model_params + " -w1 " + string(w1) + " -w-1 " + string(w2);
+% model_params = model_params + " -w1 " + string(w1) + " -w-1 " + string(w2);
 % model_params = model_params + " -w3 " + string(w3);
 model_params = model_params + " -m "+ string(7400) + " -b 0" + " -q 1";
 % conversion to char array

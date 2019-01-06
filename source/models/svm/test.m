@@ -1,9 +1,9 @@
-input_data_path = '../../../data/DAPHNET_mat_files/windows/length35/final/design_matrix_min.train'; 
+input_data_path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings11/design_matrix_s3.train'; 
 
-output_data_path = '../../../data/DAPHNET_mat_files/windows/length35/final/';
+output_data_path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings11/';
 
 class_imbalance_weights = [10,0.1,0.1];
-filename = 'svm_model_35';
+filename = 'svm_model_s3';
 
 disp('Commencing model training');
 [results,g,c] = train_svm_bayesian(input_data_path,output_data_path,...
