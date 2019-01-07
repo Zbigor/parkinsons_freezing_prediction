@@ -26,9 +26,9 @@ fn = conf(2,1);
 tn = conf(2,2);
 
 % move it to a function
-% matthews correlation coefficient
+% negative matthews correlation coefficient
 % is used as the criterion for feature selection
-mcc = (tp*tn - fp*fn)/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn));
+mcc = -(tp*tn - fp*fn)/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn));
 
 
 
