@@ -18,7 +18,7 @@ clear labels_struct
 % just using first channnel (ankle acc horiz forward)
 
 % X = [design_matrix(:,1:99), design_matrix(:,109:123)];
-X = design_matrix(:,1:99);
+% X = design_matrix(:,1:99);
 
 % just the features from the sensor on the ankle 
 % X = design_matrix(:,[1,2,3,10,11,12,28,29,30,37,38,39,46,47,48,55,56,57,...
@@ -27,6 +27,8 @@ X = design_matrix(:,1:99);
 % just the unsupervised on ankle
 % X = design_matrix(:,[109:123]);
 
+%  sequential feature selection 
+X = design_matrix(:,[2,41,89,94]);
 
 dim = size(X);
 % X = X(:,[6,8,10]);

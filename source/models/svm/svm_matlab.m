@@ -17,7 +17,10 @@ clear labels_struct
 % minimal set of features
 % just using first channnel (ankle acc horiz forward)
 
-X = design_matrix(:,[1,10,28,37,46,55,64,73,82,91,109,110,111,112,113]);
+% X = design_matrix(:,[1,10,28,37,46,55,64,73,82,91,109,110,111,112,113]);
+
+%  sequential feature selection 
+X = design_matrix(:,[2,41,89,94]);
 dim = size(X);
 % X = X(:,[6,8,10]);
 % labeling as -1 and 1 needed for binomial distribution
@@ -52,7 +55,23 @@ end
 conf = conf/5;
 
 disp(conf);
+conf = conf';
+tp = conf(1,1);
+fp = conf(1,2);
+fn = conf(2,1);
+tn = conf(2,2);
 
+% move it to a function
+% matthews correlation coefficient
+
+mcc = (tp*tn - fp*fn)/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn));
+
+% with respect to FoG class - order is [-1,1]
+sensitivity = tp/(tp+fn);
+specificity = tn/(tn+fp);
+
+% F1 score
+F1 = 2*tp/(2*tp+fp+fn);
 
 
 

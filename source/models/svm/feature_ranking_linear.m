@@ -25,5 +25,5 @@ c = cvpartition(y,'KFold',5,'Stratify',true);
 opts = statset('display','iter','UseParallel',false);
 fun = @(XT,yT,Xt,yt)(classify_linear(Xt,yt,XT,yT));
 
-[fs,history] = sequentialfs(fun,X,y,'cv',c,'direction','backward',...
+[fs,history] = sequentialfs(fun,X,y,'cv',c,'direction','forward',...
                             'options',opts);
