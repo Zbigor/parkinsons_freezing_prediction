@@ -18,7 +18,7 @@ clear labels_struct
 % just using first channnel (ankle acc horiz forward)
 
 % X = [design_matrix(:,1:99), design_matrix(:,109:123)];
-% X = design_matrix(:,1:99);
+X = design_matrix(:,1:99);
 
 % just the features from the sensor on the ankle 
 % X = design_matrix(:,[1,2,3,10,11,12,28,29,30,37,38,39,46,47,48,55,56,57,...
@@ -28,7 +28,7 @@ clear labels_struct
 % X = design_matrix(:,[109:123]);
 
 %  sequential feature selection 
-X = design_matrix(:,[2,41,89,94]);
+% X = design_matrix(:,[2,41,89,94]);
 
 dim = size(X);
 % X = X(:,[6,8,10]);
@@ -37,6 +37,7 @@ labels(labels == 2) = -1;
 y = labels;
 c = cvpartition(y,'KFold',5,'Stratify',true);
 conf = zeros(2,2);
+
 for fold = 1:5
 
 idxTrain = training(c,fold);
@@ -83,10 +84,13 @@ specificity = tn/(tn+fp);
 % F1 score
 F1 = 2*tp/(2*tp+fp+fn);
 
+% saving the model
+% not doing model selection in the outer loop, all should be similarly 
+% good/bad for the test data
 
+model_name = "model_99";
 
-
-
+save(model_name,'Model');
 
 
 
