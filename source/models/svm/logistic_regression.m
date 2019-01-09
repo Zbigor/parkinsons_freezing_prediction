@@ -1,5 +1,5 @@
 
-path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings11/';
+path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings13/';
 
 % loading the full design matrix with all extracted features
 file = strcat(path,'design_matrix_s3.mat');
@@ -17,7 +17,12 @@ clear labels_struct
 % minimal set of features
 % just using first channnel (ankle acc horiz forward)
 
-X = design_matrix(:,[1,10,28,37,46,55,64,73,82,91]);
+X = design_matrix(:,[1,2,3,10,11,12,28,29,30,37,38,39,46,47,48,55,56,57,...
+    64,65,66,73,74,75,82,83,84,91,92,93]);
+% X = design_matrix(:,1:99);
+% X = design_matrix(:,[2,41,89,94]);
+% X = design_matrix(:,109:123);
+% X = [design_matrix(:,[2,41,89,94]),design_matrix(:,109:123)];
 dim = size(X);
 % X = X(:,[6,8,10]);
 % labeling as 0 and 1 needed for binomial distribution
@@ -33,9 +38,10 @@ XTrain = X(idxTrain,:);
 yTrain = yBinom(idxTrain);
 XTest = X(idxTest,:);
 yTest = yBinom(idxTest);
-
+% cost for s02
+cost = [0,1;2,0];
 [B,FitInfo] = lassoglm(XTrain,yTrain,'binomial','CV',10,'Alpha',0.5,...
-                                  'Options',statset('UseParallel',true));
+                       'Options',statset('UseParallel',true));
 
 
 idxMinDeviance = FitInfo.IndexMinDeviance;
@@ -50,4 +56,25 @@ end
 conf = conf/5;
 
 disp(conf);
+
+conf = conf';
+tp = conf(1,1);
+fp = conf(1,2);
+fn = conf(2,1);
+tn = conf(2,2);
+
+% move it to a function
+% matthews correlation coefficient
+
+mcc = (tp*tn - fp*fn)/sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn));
+
+% with respect to gait class - order is [-1,1]
+sensitivity = tp/(tp+fn);
+specificity = tn/(tn+fp);
+
+% F1 score
+F1 = 2*tp/(2*tp+fp+fn);
+
+report = {conf,sensitivity,specificity,F1,mcc,coef};
+
 

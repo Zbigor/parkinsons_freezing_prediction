@@ -1,5 +1,5 @@
 
-path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings11/';
+path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings13/';
 
 % loading the full design matrix with all extracted features
 file = strcat(path,'design_matrix_s3.mat');
@@ -24,8 +24,8 @@ X = design_matrix(:,1:99);
 % X = design_matrix(:,[1,2,3,10,11,12,28,29,30,37,38,39,46,47,48,55,56,57,...
 %     64,65,66,73,74,75,82,83,84,91,92,93]);
 
-% just the unsupervised on ankle
-% X = design_matrix(:,[109:123]);
+% just the unsupervised on 
+% X = design_matrix(:,109:123);
 
 %  sequential feature selection 
 % X = design_matrix(:,[2,41,89,94]);
@@ -53,8 +53,17 @@ c_opt = cvpartition(yTrain,'KFold',5,'Stratify',true);
 opts = struct('Optimizer','bayesopt','ShowPlots',false,'CVPartition',c_opt,...
     'AcquisitionFunctionName','expected-improvement-plus','UseParallel',true);
 
+% cost matrix for s07
+% cost = [0, 5;1, 0];
+
+% cost matrix for s02
+% cost = [0, 2;1, 0];
+
+% cost matrix for s03
+cost = [0, 1.3725;1, 0];
+
 Model = fitclinear(XTrain',yTrain,'ObservationsIn','columns',...
-    'Learner','svm',...
+    'Learner','svm','Cost',cost,...
     'OptimizeHyperparameters',{'Lambda','Regularization'},'HyperparameterOptimizationOptions',...
     opts);
 
@@ -84,11 +93,15 @@ specificity = tn/(tn+fp);
 % F1 score
 F1 = 2*tp/(2*tp+fp+fn);
 
+report = {conf,sensitivity,specificity,F1,mcc,Model};
+
+
+
 % saving the model
 % not doing model selection in the outer loop, all should be similarly 
 % good/bad for the test data
 
-model_name = "model_99";
+model_name = "model_S03R01";
 
 save(model_name,'Model');
 

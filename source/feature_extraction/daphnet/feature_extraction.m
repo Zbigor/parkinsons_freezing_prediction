@@ -16,7 +16,7 @@
 % convert the script to a function, data path given as input
 % will be called for different window sizes and other hyperparameter values
 sample_freq = 64;
-path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings11/';
+path = '../../../data/DAPHNET_mat_files/windows/personalized/S03/settings13/';
 file = strcat(path,'training_data.mat');
 window_data_struct = load(file);
 window_data = window_data_struct.training_data;

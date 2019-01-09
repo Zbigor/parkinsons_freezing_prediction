@@ -18,6 +18,9 @@ sample_rate = 64;
 
 % data = data(1280*sample_rate:end,:);
 
+% for s5
+% data = data(342*sample_rate:1470*sample_rate,:);
+
 % load the filter coefficients
 filter_struct = load('filters.mat');
 filters = filter_struct.filters;
@@ -30,11 +33,12 @@ filter3 = filters(:,5:6);
 
 
 % load the prediction model
-model_struct = load("model_99.mat");
-model = model_struct.Model;
+% model_struct = load("model_99.mat");
+% model = model_struct.Model;
 
-
-
+% model for s5
+model_struct = load("Model_svml99_s5.mat");
+model = model_struct.Model_svml99_s5;
 
 window_length = 3;
 latency = 0.3;
@@ -68,8 +72,14 @@ if(stimulus == 0)||(stim_duration_counter>=10)
   old_tail = tail;
   
 if(stim_duration_counter>=10)
-    head = head - floor(10*latency * sample_rate); 
+    head = head - floor(10*latency * sample_rate);
+   
     tail = tail - floor(10*latency * sample_rate);
+    
+     if (head<0)||(tail<0)
+        head = old_head;
+        tail = old_tail;
+    end
 end
 
 stim_duration_counter = 0;
