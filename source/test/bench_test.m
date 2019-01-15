@@ -2,7 +2,7 @@
 
 % set the input file paths (here you can iterate through all test files)
 input_path = "../../data/DAPHNET_txt_data/";
-filename = "S05R02.txt";
+filename = "S03R01.txt";
 data_file = strcat(input_path,filename);
 % load the data
 data = load(data_file);
@@ -37,8 +37,8 @@ filter3 = filters(:,5:6);
 % model = model_struct.Model;
 
 % model for s5
-model_struct = load("Model_svml99_s5.mat");
-model = model_struct.Model_svml99_s5;
+model_struct = load("Model_svml99_s3.mat");
+model = model_struct.Model;
 
 window_length = 3;
 latency = 0.3;
@@ -124,7 +124,7 @@ t_average = t_elapsed/processed_windows;
 
 figure
 plot(0:0.3:(processed_windows+10-1)*0.3,stimulus_log);
-
-
+figure
+stem(t_log,ones(1,length(t_log)))
 
 
